@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    New Recipe
+{% endblock %}
+
+{% block main %}
+<!-- creates the form that allows users to specify how many ingredients and how many instructions there are in a new recipe -->
+<form id="form1" action="/create" method="post">
+    <div class="form-group">
+        <input autocomplete="off" autofocus class="form-control" name="ingredients" min="1" placeholder="How many ingredients?" type="number" required>
+    </div>
+    <div style="margin-top: 15px;">
+        <input autocomplete="off" autofocus class="form-control" min="1" name="steps" placeholder="How many steps?" type="number" required>
+    </div>
+    <div style="margin-top: 15px;">
+        <button class="btn btn-primary" type="submit">Create</button>
+    </div>
+</form>
+{% endblock %}

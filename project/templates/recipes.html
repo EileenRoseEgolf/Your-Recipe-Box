@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block main %}
+<body>
+
+    <!-- creates the space between the nav bar and the top of the paper -->
+    <h1 style="color: white;">.</h1>
+
+    <!-- creates the lined paper with heading -->
+    <section class="paper2">
+
+        <!-- creates the form that allows users to edit or delete recipes -->
+        <form id="form5" action="/edit" method="post">
+
+        <!-- iterates over all the user's recipes and creates a table row for each recipe containing the recipe title as well as an edit and delete button -->
+        {% for row in rows %}
+            <ul class="font_set font_size" style="text-align: left; margin-top: 20px;">
+                <li>{{row.recipe}}&nbsp;&nbsp;
+
+                 <!-- creates a button that sends the user to the recipe edit page -->
+                <button class="btn btn-primary" name="action" value="{{row.recipe}} edit" type="submit">Edit</button>&nbsp;
+
+                <!-- creates a button that submits all the necessary information to delete a recipe -->
+                <button class="btn btn-primary" name="action" value="{{row.recipe}} delete" type="submit">Delete</button>
+                </li>
+            </ul>
+        {% endfor %}
+        </form>
+    </section>
+</body>
+{% endblock %}

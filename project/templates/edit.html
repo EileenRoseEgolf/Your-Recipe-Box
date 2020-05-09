@@ -1,0 +1,181 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Edit Recipe
+{% endblock %}
+
+{% block main %}
+<script>
+    // opens the popup form for the respective ingredient
+    function openForm() {
+        // gets value, the index number, of the button that was pressed
+        let x = event.target.value;
+        // opens the associated form by concatinating the button index number with the generic form name in order to access the correct form
+        document.getElementById("myForm" + x).style.display = "block";
+    }
+
+    // closes the popup form for the respective ingredient
+    function closeForm() {
+        // gets value, the index number, of the button that was pressed
+        let x = event.target.value;
+        // closes the associated form by concatinating the button index number with the generic form name in order to access the correct form
+        document.getElementById("myForm" + x).style.display = "none";
+    }
+
+    // opens the popup form for the respective instruction
+    function openForm2() {
+        // gets value, the index number, of the button that was pressed
+        let x = event.target.value;
+        // opens the associated form by concatinating the button index number with the generic form name in order to access the correct form
+        document.getElementById("myForm2" + x).style.display = "block";
+    }
+
+    // closes the popup form for the respective instruction
+    function closeForm2() {
+        // gets value, the index number, of the button that was pressed
+        let x = event.target.value;
+        // closes the associated form by concatinating the button index number with the generic form name in order to access the correct form
+        document.getElementById("myForm2" + x).style.display = "none";
+    }
+</script>
+<body>
+
+    <!-- creates the space between the nav bar and the top of the paper -->
+    <h1 style="color: white;">.</h1>
+
+        <!-- creates the lined paper with heading -->
+        <section class="paper">
+            <article class="head"></article>
+            <p>&nbsp;</p>
+
+            <!-- places the title of the recipe in the heading of the lined paper -->
+            <div id="recipe_title" class="font_set">{{recipe}}</div>
+
+            <!-- creates the table of ingredients for each recipe -->
+            <table id="recipe_table" class="font_set font_size">
+
+            <!-- iterates over every ingredient in the given recipe and creates a table row for that ingredient including edit and delete buttons as well as a popup form for editing -->
+            {% for row in rows %}
+                <tr>
+                    <td>
+                        <ul>
+                            <!-- creates the form that allows users to delete ingredients or open the popup editing form -->
+                            <form id="form6" action="/edit_recipe" method="post">
+                            <li>
+                                <button class="btn btn-primary open-button" onclick="openForm()" name="action" value="{{loop.index}}" type="button">Edit</button>
+                                <button class="btn btn-primary" name="action" value="{{recipe}} delete ingredient {{row.ingredient}}" type="submit">Delete</button>
+                                &nbsp;&nbsp;&nbsp;{{row.ingredient}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{row.amount}} {{row.unit}}
+                            </form>
+
+                            <!-- creates the popup form to edit individual ingredients -->
+                            <div class="form-popup" id="myForm{{loop.index}}">
+                                <form id="form7" action="/edit_recipe" method="post">
+
+                                    <!-- hidden information about the existing ingredient that is submitted when the user updates the recipe -->
+                                    <input type="hidden" name="recipe" value="{{recipe}}">
+                                    <input type="hidden" name="item" value="{{row.ingredient}}">
+                                    <input type="hidden" name="item_type" value="ingredient">
+
+                                    <!-- user input for the updated ingredient -->
+                                    <input autocomplete="off" autofocus class="form-control" name="ingredient" placeholder="Ingredient" type="text" required>
+                                    <input autocomplete="off" class="form-control" min="0" step="0.00001" name="amount" placeholder="How much?" type="number" required>
+                                    <select class="form-control" name="unit" required>
+                                        <option disabled="" selected="" value="">Units</option>
+                                            <option>c</option>
+                                            <option>tbsp</option>
+                                            <option>tsp</option>
+                                            <option>oz</option>
+                                            <option>pt</option>
+                                            <option>qt</option>
+                                            <option>L</option>
+                                            <option>ml</option>
+                                            <option>gal</option>
+                                            <option>g</option>
+                                            <option>kg</option>
+                                            <option>lb</option>
+                                            <option>piece</option>
+                                    </select>
+
+                                    <!-- creates buttons to either update the ingredient or close the popup form -->
+                                    <button class="btn btn-primary" type="submit">Update</button>
+                                    <button type="button" class="btn btn-primary" onclick="closeForm()" value="{{loop.index}}">Close</button>
+                                </form>
+                            </div>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            {% endfor %}
+
+                <!-- creates a form that allows users to add an ingredient to the recipe -->
+                <tr>
+                    <td>
+                        <form id="form8" action="/edit_recipe" method="post" class="add_forms">
+                            <input type="hidden" name="recipe" value="{{recipe}}">
+                            <input type="hidden" name="item_type" value="ingredient">
+                            <input autocomplete="off" autofocus class="form-control" name="ingredient" placeholder="Ingredient" type="text" required>
+                            <input autocomplete="off" class="form-control" min="0" step="0.00001" name="amount" placeholder="How much?" type="number" required>
+                            <select class="form-control" name="unit" required>
+                                <option disabled="" selected="" value="">Units</option>
+                                    <option>c</option>
+                                    <option>tbsp</option>
+                                    <option>tsp</option>
+                                    <option>oz</option>
+                                    <option>pt</option>
+                                    <option>qt</option>
+                                    <option>L</option>
+                                    <option>ml</option>
+                                    <option>gal</option>
+                                    <option>g</option>
+                                    <option>kg</option>
+                                    <option>lb</option>
+                                    <option>piece</option>
+                            </select>
+                            <button class="btn btn-primary" name="add" type="submit">Add</button>
+                        </form>
+                    </td>
+                </tr>
+
+            <!-- creates the header for the instrucitons list -->
+            <th id="table_head">Instructions</th>
+
+            <!-- iterates over every instruction in the given recipe and creates a table row for that instruction including edit and delete buttons as well as a popup form for editing -->
+            {% for row in rows2 %}
+                <tr>
+                    <!-- creates the form that allows users to delete instructions or open the popup editing form -->
+                    <form id="form9" action="/edit_recipe" method="post">
+                        <td>{{loop.index}}.&nbsp;&nbsp;{{row.step}}&nbsp;&nbsp;
+                        <button class="btn btn-primary open-button" name="action" onclick="openForm2()" value="{{loop.index}}" type="button">Edit</button>
+                        <button class="btn btn-primary" name="action" value="{{recipe}} delete step {{row.step}}" type="submit">Delete</button>
+                    </form>
+
+                    <!-- creates the popup form to edit individual instructions -->
+                    <div class="form-popup" id="myForm2{{loop.index}}">
+                        <form id="form10" action="/edit_recipe" method="post">
+                            <input type="hidden" name="item" value="{{row.step}}">
+                            <input type="hidden" name="item_type" value="step">
+                            <input type="hidden" name="recipe" value="{{recipe}}">
+                            <input autocomplete="off" autofocus class="form-control" name="step" placeholder="Step" type="text" required>
+                            <button class="btn btn-primary" type="submit">Update</button>
+                            <button type="button" class="btn btn-primary" onclick="closeForm2()" name="action" value="{{loop.index}}">Close</button>
+                        </form>
+                    </div>
+                    </td>
+                </tr>
+            {% endfor %}
+
+                <!-- creates a form that allows users to add an instruction to the recipe -->
+                <tr>
+                    <td>
+                        <form id="form11" action="/edit_recipe" method="post" class="font_set">
+                            <input type="hidden" name="recipe" value="{{recipe}}">
+                            <input type="hidden" name="item_type" value="step">
+                            <input autocomplete="off" autofocus class="form-control" name="step" placeholder="Step" type="text" required>
+                            <button class="btn btn-primary" name="add" type="submit">Add</button>
+                        </form>
+                    </td>
+                </tr>
+            </table>
+        </section>
+</body>
+{% endblock %}

@@ -1,0 +1,66 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    New Recipe
+{% endblock %}
+
+{% block main %}
+<!-- creates the form that allows users to input the title of the recipe, the ingredients and the amount and unit for each ingredient -->
+<form id="form1" action="/new" method="post">
+
+    <!-- creates a table for all the ingredient inputs -->
+    <table>
+
+        <!-- creates a row for the recipe title input -->
+        <tr>
+            <input autocomplete="off" autofocus class="form-control" name="recipe" placeholder="Title of Recipe" type="text" required>
+        </tr>
+
+        <!-- iterates over the number of ingredients specified by the user and creates an row for the ingredient, amount and unit inputs -->
+        {% for i in range(number) %}
+        <tr>
+            <td>
+                <!-- hidden input for the number of ingredients -->
+                <input type="hidden" name="number" value="{{number}}">
+                <input autocomplete="off" autofocus class="form-control" name="ingredient{{loop.index}}" placeholder="Ingredient" type="text" required>
+                <input autocomplete="off" class="form-control" min="0" step="0.00001" name="amount{{loop.index}}" placeholder="How much?" type="number" required>
+                <select class="form-control" name="unit{{loop.index}}" required>
+                    <option disabled="" selected="" value="">Units</option>
+                        <option>c</option>
+                        <option>tbsp</option>
+                        <option>tsp</option>
+                        <option>oz</option>
+                        <option>pt</option>
+                        <option>qt</option>
+                        <option>L</option>
+                        <option>ml</option>
+                        <option>gal</option>
+                        <option>g</option>
+                        <option>kg</option>
+                        <option>lb</option>
+                        <option>piece</option>
+                </select>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <!-- creates a table for all the instruction inputs -->
+    <table id="steps">
+
+        <!-- iterates over the number of instructions specified by the user and creates an row for each instruction input -->
+        {% for i in range(steps) %}
+        <tr>
+            <td>
+                <!-- hidden input for the number of instructions -->
+                <input type="hidden" name="steps" value="{{steps}}">
+                <input style="width: 507px;" autocomplete="off" autofocus class="form-control" id="steps" name="step{{loop.index}}" placeholder="Step" type="text" required>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <!-- creates a button to submit all the information for the new recipe -->
+    <button style="margin-top: 15px; bottom-margin: 15px;" class="btn btn-primary" type="submit">Create</button>
+</form>
+{% endblock %}

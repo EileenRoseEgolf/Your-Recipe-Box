@@ -1,0 +1,212 @@
+/* some of this code is based on the source code from pset#9 */
+
+
+nav .navbar-brand
+{
+    /* size for website title */
+    font-size: 45px;
+    font-weight: 900;
+}
+
+nav .navbar-brand .website_title
+{
+    /* styling for website title */
+    color: #ffb84d;
+    font-family: "Curlz MT";
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+nav .nav-item .nav-link
+{
+    /* styling for nav bar links to each page */
+    color: #8FBC8F;
+    text-shadow: -1px 0 black, 0 0.5px black, 1px 0 black, 0 -1px black;
+}
+
+#form1
+{
+    /* styling for page-centered forms */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+main .form-control
+{
+
+    /* center form controls */
+    display: inline-block;
+
+    /* override Bootstrap's 100% width for form controls */
+     width: auto;
+}
+
+main
+{
+    /* scroll horizontally as needed */
+    overflow-x: auto;
+
+    /* center contents */
+    text-align: center;
+}
+
+
+main img
+{
+    /* constrain images on small screens */
+    max-width: 100%;
+}
+
+body
+{
+    /* sets and sizes background image for all pages */
+    background-image: url('background3.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.paper
+{
+    /* Creates lined notebook paper effect for edit.html, recipe_card.html and grocery_list.html */
+    /* citation: https://www.techrepublic.com/blog/web-designer/how-to-get-the-ruled-paper-background-effect-with-css3/ */
+    /* I altered the original code from the above source to fit my needs */
+    width: 50%;
+    height: 80%;
+    margin: 0 auto;
+    padding: 6px 5px 4px 42px;
+    position: relative;
+    color: #444;
+    line-height: 20px;
+    border: 1px solid #d2d2d2;
+    background: #fff;
+    background: -webkit-gradient(linear, 0 0, 0 100%, from(#d9eaf3), color-stop(4%, #fff)) 0 4px;
+    background: -webkit-linear-gradient(top, #d9eaf3 10%, #fff 8%) 0 4px;
+    background: -moz-linear-gradient(top, #d9eaf3 10%, #fff 8%) 0 4px;
+    background: -ms-linear-gradient(top, #d9eaf3 10%, #fff 8%) 0 4px;
+    background: -o-linear-gradient(top, #d9eaf3 10%, #fff 8%) 0 4px;
+    background: linear-gradient(top, #d9eaf3 10%, #fff 8%) 0 4px;
+    -webkit-background-size: 100% 20px;
+    -moz-background-size: 100% 20px;
+    -ms-background-size: 100% 20px;
+    -o-background-size: 100% 20px;
+    background-size: 100% 20px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.07);
+    -moz-box-shadow: 0 1px 2px rgba(0,0,0,0.07);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.07);
+	width: 816px;
+	height: auto;
+}
+
+.paper::before
+{
+    /* Creates the red verticle double lined left margin on the noebook paper for edit.html, recipe_card.html and grocery_list.html */
+    /* citation: https://www.techrepublic.com/blog/web-designer/how-to-get-the-ruled-paper-background-effect-with-css3/ */
+    /* I altered the original code from the above source to fit my needs */
+    content: '';
+    position: absolute;
+    width: 12px;
+    top: 0;
+    left: 60px;
+    bottom: 0;
+    border: 2px solid;
+    border-color: transparent #efe4e4;
+}
+
+.head
+{
+    /* Creates header one the lined notebook paper for edit.html, recipe_card.html and grocery_list.html */
+    /* citation: https://www.techrepublic.com/blog/web-designer/how-to-get-the-ruled-paper-background-effect-with-css3/ */
+    /* I altered the original code from the above source to fit my needs */
+	background-color: #FFF;
+	height: 124px;
+	margin-left: -42px;
+	margin-top: -4px;
+}
+
+.paper2
+{
+    /* Creates lined notebook paper effect for recipies.html */
+    /* citation: https://www.techrepublic.com/blog/web-designer/how-to-get-the-ruled-paper-background-effect-with-css3/ */
+    /* I altered the original code from the above source to fit my needs */
+    /* This differs from the above paper styling in that it does not include the red verticle double lined left margin */
+    width: 50%;
+    height: 80%;
+    margin: 0 auto;
+    padding: 6px 5px 4px 42px;
+    position: relative;
+    color: #444;
+    line-height: 20px;
+    border: 1px solid #d2d2d2;
+    background: #fff;
+    background: -webkit-gradient(linear, 0 0, 0 100%, from(#d9eaf3), color-stop(4%, #fff)) 0 4px;
+    background: -webkit-linear-gradient(top, #d9eaf3 10%, #fff 8%) 0 4px;
+    background: -moz-linear-gradient(top, #d9eaf3 10%, #fff 8%) 0 4px;
+    background: -ms-linear-gradient(top, #d9eaf3 10%, #fff 8%) 0 4px;
+    background: -o-linear-gradient(top, #d9eaf3 10%, #fff 8%) 0 4px;
+    background: linear-gradient(top, #d9eaf3 10%, #fff 8%) 0 4px;
+    -webkit-background-size: 100% 20px;
+    -moz-background-size: 100% 20px;
+    -ms-background-size: 100% 20px;
+    -o-background-size: 100% 20px;
+    background-size: 100% 20px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.07);
+    -moz-box-shadow: 0 1px 2px rgba(0,0,0,0.07);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.07);
+	width: 816px;
+	height: auto;
+}
+
+#recipe_title
+{
+    /* styling for recipe card/grocery list titles on lined notebook paper */
+    font-size: 70px;
+    margin-top: -70px;
+    margin-bottom: 35px;
+    line-height: 60px;
+}
+
+#table_head
+{
+    /* styling for the instructions table header on each recipe card */
+    padding-top: 15px;
+    padding-bottom: 20px;
+}
+
+#recipe_table
+{
+    /* styling for the ingredients/instruction tables on each recipe card */
+    border-collapse: separate;
+    border-spacing: 0 20px;
+    margin-left: 60px;
+    text-align: left;
+    width: 90%;
+    line-height: 35px;
+}
+
+.form-popup
+{
+    /* styling for the recipe edit popup forms */
+    display: none;
+    margin-top: 20px;
+}
+
+.font_set
+{
+    /* sets common font */
+    font-family: Bradley Hand ITC;
+}
+
+.font_size
+{
+    /* sets common text size */
+    font-size: 40px;
+}
+

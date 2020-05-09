@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Grocery List
+{% endblock %}
+
+{% block main %}
+<body>
+
+    <!-- creates the space between the nav bar and the top of the paper -->
+    <h1 style="color: white;">.</h1>
+
+        <!-- creates the lined paper with heading -->
+        <section class="paper">
+            <article class="head"></article>
+            <p>&nbsp;</p>
+
+            <!-- places the title of the grocery list in the heading of the lined paper -->
+            <div id="recipe_title" class="font_set">Grocery List</div>
+
+            <!-- creates the table of grocery list items -->
+            <table id="recipe_table" class="font_set font_size">
+
+            <!-- iterates over every item in the grocery list and creates a table row for that item -->
+            {% for row in rows %}
+
+                <!-- creates a form that allows users to delete items from the grocery list -->
+                <form id="form12" action="/grocery_list" method="post">
+                    <tr>
+                        <!-- creates cells containing one list item and one delete button -->
+                        <td style="max-width: 400px;">
+                            <ul>
+                                <li>{{row.item}}&nbsp;&nbsp;
+                                <button class="btn btn-primary" name="action" value="{{row.item}}" type="submit">Delete</button>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                </form>
+            {% endfor %}
+        </section>
+</body>
+{% endblock %}

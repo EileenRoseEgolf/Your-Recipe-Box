@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Recipe Card
+{% endblock %}
+
+{% block main %}
+<body>
+
+    <!-- creates the space between the nav bar and the top of the paper -->
+    <h1 style="color: white;">.</h1>
+
+        <!-- creates the lined paper with heading -->
+        <section class="paper">
+            <article class="head"></article>
+            <p>&nbsp;</p>
+
+            <!-- places the title of the recipe in the heading of the lined paper -->
+            <div id="recipe_title" class="font_set">{{recipe}}</div>
+
+            <!-- creates the table of ingredients for each recipe -->
+            <table id="recipe_table" class="font_set font_size">
+
+                <!-- creates the form that adds selected ingredients to the grocery list -->
+                <form id="form2" action="/grocery_list" method="post">
+
+                <!-- iterates over every ingredient in the given recipe and creates a table row for that ingredient -->
+                {% for row in rows %}
+                    <tr>
+                        <!-- creates a cell with a checkbox that stores all the necessary information of the associated ingredient that is submitted to the gorcery list -->
+                        <td style="padding-right: 15px;" ><input id="checkbox" type="checkbox" name="checkbox" value="{{row.ingredient}} {{row.amount}} {{row.unit}}"></td>
+
+                        <!-- creates cells for the ingredient and the amount/unit -->
+                        <td style="max-width: 400px;">{{row.ingredient}}</td>
+                        <td style="text-align: right; vertical-align: middle;">{{row.amount}} {{row.unit}}</td>
+                    </tr>
+                {% endfor %}
+                </form>
+            </table>
+
+            <!-- creates a button to add items to the grocery list -->
+            <button class="btn btn-primary font_set" type="submit" form="form2">Add to Grocery List</button>
+
+            <!-- creates the table of instructions for each recipe -->
+            <table id="recipe_table" class="font_set font_size">
+                <th id="table_head">Instructions</th>
+                {% for row in rows2 %}
+                    <tr>
+                        <td>{{loop.index}}.&nbsp;&nbsp;{{row.step}}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </section>
+</body>
+{% endblock %}

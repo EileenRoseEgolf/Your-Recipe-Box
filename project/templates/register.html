@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block main %}
+<!-- creates the form for users to register for an account by entering their username, password and pasword confirmation -->
+<form id="form1" action="/register" method="post">
+    <div class="form-group">
+        <input autocomplete="off" autofocus class="form-control" name="username" placeholder="Username" type="text"required>
+    </div>
+    <div class="form-group">
+        <input class="form-control" name="password" placeholder="Password" type="password" required>
+    </div>
+    <div class="form-group">
+        <input class="form-control" name="confirmation" placeholder="Re-enter Password" type="password" required>
+    </div>
+    <button class="btn btn-primary" type="submit">Register</button>
+</form>
+{% endblock %}

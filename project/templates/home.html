@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block main %}
+<!-- creates the form that allows users to select the recipe card they wish to see -->
+<form id="form1" action="/" method="post">
+    <div class="form-group">
+        <select class="form-control" name="recipe" required>
+
+            <!-- creates placeholder text for the select options -->
+            <option disabled="" selected="" value="">Recipe</option>
+
+            <!-- iterates over all of the user's recipes and creates an option for that recipe -->
+            {% for row in rows %}
+            <option>{{row.recipe}}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <button class="btn btn-primary" type="submit">Get Recipe</button>
+</form>
+{% endblock %}
